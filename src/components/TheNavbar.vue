@@ -1,23 +1,9 @@
 <template>
-  <header class="navbar" v-if="visible">
+  <header class="navbar">
     <h3>GMail</h3>
     <ul class="navbar-menu">
-      <li><a href="/dashboard">Главная</a></li>
-      <li>
-        <a custom to="/mail">Почта</a>
-      </li>
-      <li><a href="#">Выйти</a></li>
+      <li><router-link :to="{name:'home'}">Все задачи</router-link></li>
+      <li><router-link :to="{name:'task-new'}">Создать</router-link></li>
     </ul>
   </header>
 </template>
-
-<script>
-export default {
-  props: {
-    visible: {
-      type: Boolean,
-      default: false
-    }
-  }
-}
-</script>
