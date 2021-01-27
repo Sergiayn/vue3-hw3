@@ -13,5 +13,8 @@ export default {
             item.date = formatDate(item.timestamp)
             return item
         })
+    },
+    statuses(state) {
+        return state.statuses
     }
 }

@@ -1,16 +1,23 @@
 import {v4 as uuid} from "uuid"
-import validateTimestamp from "@/use/validateTimestamp"
+import validateStatusTask from "@/use/validateStatusTask"
 
 export default {
     addNewTask(state,item) {
         item.id = uuid()
-        if(item.status === undefined) {
-            item.status = 'active'
-        }
-        if(validateTimestamp(item.timestamp)) {
-            item.status = 'cancelled'
-        }
+        item.status = validateStatusTask(item)
 
         state.tasks.push(item)
+    },
+    changeStatusTask(state,item) {
+        let index = -1
+        state.tasks.filter((task,idx) => {
+            if(task.id === item.id) {
+                task.status = item.status
+                task.status = validateStatusTask(task)
+                index = idx
+            }
+        })
+
+        return index
     }
 }

@@ -5,9 +5,18 @@
     <p><strong>Дэдлайн</strong>: {{ new Date(task.timestamp * 1000).toLocaleDateString() }}</p>
     <p><strong>Описание</strong>: {{task.desc}}</p>
     <div>
-      <button class="btn">Взять в работу</button>
-      <button class="btn primary">Завершить</button>
-      <button class="btn danger">Отменить</button>
+      <button @click.prevent="changeStatus('pending')"
+              class="btn" >
+        Взять в работу
+      </button>
+      <button @click.prevent="changeStatus('done')"
+              class="btn primary">
+        Завершить
+      </button>
+      <button @click.prevent="changeStatus('cancelled')"
+              class="btn danger">
+        Отменить
+      </button>
     </div>
   </div>
   <h3 class="text-white center" v-else>
@@ -25,10 +34,14 @@ export default {
   setup() {
     const route = useRoute()
     const store = useStore()
-    const id = parseInt(route.params.taskId)
+    const id = route.params.taskId
     const task = store.getters.task(id)
+    const changeStatus = (status) => {
+      store.commit('changeStatusTask', {id,status})
+    }
 
     return {
+      changeStatus,
       id,
       task
     }
