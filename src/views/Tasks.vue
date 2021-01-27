@@ -9,7 +9,10 @@
         <AppStatus :type="task.status" />
       </h2>
       <p><strong><small>{{task.date }}</small></strong></p>
-      <button class="btn primary">Посмотреть</button>
+      <button class="btn primary"
+              @click.prevent="buttonClick(task.id)">
+        Посмотреть
+      </button>
     </div>
   </template>
   <h1 v-else
@@ -21,17 +24,23 @@
 <script>
 import AppStatus from '../components/AppStatus'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
 export default {
   components: {AppStatus},
   setup() {
+    const router = useRouter()
     const store = useStore()
 
     const countActiveStatus = ref(store.getters.countActiveStatus)
     const tasks = ref(store.getters.tasks)
+    const buttonClick = (id) => {
+      router.push({name:'task-view',params:{taskId:id}})
+    }
 
     return {
+      buttonClick,
       countActiveStatus,
       tasks
     }
