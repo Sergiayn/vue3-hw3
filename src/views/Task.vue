@@ -6,10 +6,12 @@
     <p><strong>Описание</strong>: {{task.desc}}</p>
     <div>
       <button @click.prevent="changeStatus('pending')"
+              :disabled="disableButton"
               class="btn" >
         Взять в работу
       </button>
       <button @click.prevent="changeStatus('done')"
+              :disabled="disableButton"
               class="btn primary">
         Завершить
       </button>
@@ -27,11 +29,13 @@
 <script>
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
+import { computed } from 'vue'
 import AppStatus from '../components/AppStatus'
+import validateTimestamp from "@/use/validateTimestamp"
 
 export default {
   components: {AppStatus},
-  setup() {
+  setup: function () {
     const route = useRoute()
     const store = useStore()
     const id = route.params.taskId
@@ -39,8 +43,10 @@ export default {
     const changeStatus = (status) => {
       store.dispatch('changeStatusTask', {id,status})
     }
+    const disableButton = computed(() => validateTimestamp(task.timestamp))
 
     return {
+      disableButton,
       changeStatus,
       id,
       task
