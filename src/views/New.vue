@@ -47,7 +47,7 @@ export default {
           timestamp:(new Date(date.value).getTime()) /1000,
           desc:desc.value
         }
-        store.commit('addNewTask',item)
+        store.dispatch('addNewTask',item)
         router.push({name:'home'})
       }
     }

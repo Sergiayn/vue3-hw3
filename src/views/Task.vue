@@ -37,7 +37,7 @@ export default {
     const id = route.params.taskId
     const task = store.getters.task(id)
     const changeStatus = (status) => {
-      store.commit('changeStatusTask', {id,status})
+      store.dispatch('changeStatusTask', {id,status})
     }
 
     return {

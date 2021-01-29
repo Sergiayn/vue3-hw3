@@ -23,7 +23,7 @@
 
 <script>
 import AppStatus from '../components/AppStatus'
-import { ref } from 'vue'
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
@@ -32,9 +32,11 @@ export default {
   setup() {
     const router = useRouter()
     const store = useStore()
+    store.dispatch('getTask')
 
-    const countActiveStatus = ref(store.getters.countActiveStatus)
-    const tasks = ref(store.getters.tasks)
+    const countActiveStatus = computed(() => store.getters.countActiveStatus)
+    const tasks = computed(() => store.getters.tasks)
+
     const buttonClick = (id) => {
       router.push({name:'task-view',params:{taskId:id}})
     }
