@@ -2,9 +2,7 @@
 
 
 ## Demo
-```
 [vue3-hw3](https://sergiayn.github.io/vue3-hw3/)
-```
 
 ## Project setup
 ```
