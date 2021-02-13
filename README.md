@@ -1,5 +1,11 @@
 # vue3-hw3
 
+
+## Demo
+```
+<a href="https://sergiayn.github.io/vue3-hw3" target="_blank">vue3-hw3</a>
+```
+
 ## Project setup
 ```
 npm install
