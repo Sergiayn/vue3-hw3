@@ -3,7 +3,7 @@
 
 ## Demo
 ```
-<a href="https://sergiayn.github.io/vue3-hw3" target="_blank">vue3-hw3</a>
+[vue3-hw3](https://sergiayn.github.io/vue3-hw3/)
 ```
 
 ## Project setup
